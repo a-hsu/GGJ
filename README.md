@@ -6,11 +6,11 @@ Participants: Andrew Hsu, Andrew Thomas, Joey Woods
 Title:
 
 Goals:
-	Release to scope
-	Create something that looks good with replayability
-	Focus on some juicing and good indication - Visually understandable
+Release to scope
+Create something that looks good with replayability
+Focus on some juicing and good indication - Visually understandable
 	
 Constraints:
-	1 Screen
-	Replayable
-	Single Player
+One Screen 
+Replayable 
+Single Player
