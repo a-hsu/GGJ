@@ -5,7 +5,11 @@ Participants: Andrew Hsu, Andrew Thomas, Joey Woods
 
 Title:
 
+THEME: 
+
+
 Goals:
+Elegantly Simple
 Release to scope
 Create something that looks good with replayability
 Focus on some juicing and good indication - Visually understandable
