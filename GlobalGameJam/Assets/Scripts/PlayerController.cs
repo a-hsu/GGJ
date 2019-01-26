@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
         Debug.Log(rb.velocity.x * x);
-        rb.velocity = new Vector3(x * speed, rb.velocity.y, z * speed);
-        /*
+        //rb.velocity = new Vector3(x * speed, rb.velocity.y, z * speed);
+        
         if (Input.GetKey(KeyCode.W))
         {
             rb.AddForce(transform.forward * speed);
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.S))
         {
             rb.AddForce(-transform.forward * speed);
-        }*/
+        }
     }
 
 
