@@ -5,7 +5,7 @@ Participants: Andrew Hsu, Andrew Thomas, Joey Woods
 
 Title:
 
-THEME: Home
+THEME: What home means to you.
 
 
 Goals:
