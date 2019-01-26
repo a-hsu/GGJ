@@ -8,6 +8,14 @@ public class PlayerController : MonoBehaviour
     public Camera cam;
     public float speed = 5f;
     public float x, z;
+
+    //you need to get this from the NPC that you are trying to find.
+    //Once your position is close enough you have found the NPC to look for.
+    public Vector3 soundPosition;
+
+
+    //Have an azure voice recognition instance here.
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,4 +51,6 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(-transform.forward * speed);
         }
     }
+
+
 }
