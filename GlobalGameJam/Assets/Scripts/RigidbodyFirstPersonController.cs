@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -89,6 +90,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
 
+        float currentTime = 0.0f;
+        bool hasChosenNPC = false;
+        GameObject chosenNPCGamebject = null;
+
 
         public Vector3 Velocity
         {
@@ -133,6 +138,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
             {
                 m_Jump = true;
+            }
+
+            currentTime = DayTimeController.getCurrentTime();
+
+            if(currentTime >=120.0f && !chosenNPCGamebject)
+            {
+                //Game over!
+                //You didnt return home in time.
             }
         }
 
@@ -184,8 +197,22 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             }
             m_Jump = false;
+
+            MoveFirstPerson();
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(collision.gameObject.tag=="ChosenNPC")
+            {
+                PickupNPC(collision.gameObject);
+            }
+
+            else if(collision.gameObject.tag=="Home")
+            {
+                ReturnHome();
+            }
+        }
 
         private float SlopeMultiplier()
         {
@@ -260,6 +287,57 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Jumping = false;
             }
+        }
+
+        private void MoveFirstPerson()
+        {
+            Vector3 targetDirection = Vector3.zero;
+
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                targetDirection = cam.transform.TransformDirection(Vector3.forward);
+                targetDirection.y = 0.0f;
+                m_RigidBody.velocity=targetDirection*movementSettings.ForwardSpeed;
+
+            }
+
+            else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                targetDirection = cam.transform.TransformDirection(Vector3.left);
+                targetDirection.y = 0.0f;
+                m_RigidBody.velocity = targetDirection * movementSettings.StrafeSpeed;
+            }
+
+            else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                targetDirection = cam.transform.TransformDirection(Vector3.back);
+                targetDirection.y = 0.0f;
+                m_RigidBody.velocity = targetDirection * movementSettings.BackwardSpeed;
+            }
+
+            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                targetDirection = cam.transform.TransformDirection(Vector3.right);
+                targetDirection.y = 0.0f;
+                m_RigidBody.velocity = targetDirection * movementSettings.StrafeSpeed;
+            }
+
+            else
+            {
+                m_RigidBody.AddForce(-m_RigidBody.velocity, ForceMode.VelocityChange);
+            }
+        }
+
+        void PickupNPC(GameObject collisionGameObject)
+        {
+            hasChosenNPC = true;
+            chosenNPCGamebject = collisionGameObject;
+            DayTimeController.ResetDayTime();
+        }
+
+        void ReturnHome()
+        {
+
         }
     }
 }
