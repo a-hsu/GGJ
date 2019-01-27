@@ -4,17 +4,37 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
+    bool grounded=true;
+    float hopHeight=5.0f;
+    Vector3 hopDirection;
+
     [SerializeField]
     Rigidbody NPCRigidBody;
 
-    // Update is called once per frame
+    void Start()
+    {
+        hopDirection.Set(0.0f, hopHeight, 0.0f);
+    }
+
     void Update()
     {
+        HopAnimation();
+    }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag=="Floor"&&!grounded)
+        {
+            grounded=true;
+        }
     }
 
     void HopAnimation()
     {
-        NPCRigidBody.AddForce()
+        if(grounded)
+        {
+            NPCRigidBody.AddForce(hopDirection, ForceMode.Impulse);
+            grounded=false;
+        }
     }
 }
