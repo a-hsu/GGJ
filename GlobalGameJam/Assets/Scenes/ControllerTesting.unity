@@ -119,15 +119,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6818889413474395612, guid: c6453f8e1f814744d8b94e5a6d1f9942,
-        type: 3}
-      propertyPath: dayTimeLight
-      value: 
-      objectReference: {fileID: 2135513604}
     - target: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_Name
       value: RigidBodyFPSController
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dayTimeLight
+      value: 
+      objectReference: {fileID: 2135513604}
     - target: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.77

@@ -30,6 +30,13 @@ public class NPCSpawnController : MonoBehaviour
         }
     }
 
+    void marckChosenNPC()
+    {
+        int chosen = Random.Range(0, NPCs.Count - 1);
+
+        NPCs[chosen].gameObject.tag = "ChosenNPC";
+    }
+
     void setNPCPosition(GameObject NPC, int distance)
     {
         float xPosition = 0.0f;
@@ -61,5 +68,7 @@ public class NPCSpawnController : MonoBehaviour
     void Start()
     {
         SpawnNPC(NPCSPawnNumber);
+
+        marckChosenNPC();
     }
 }

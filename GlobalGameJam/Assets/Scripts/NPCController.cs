@@ -11,6 +11,8 @@ public class NPCController : MonoBehaviour
     [SerializeField]
     Rigidbody NPCRigidBody;
 
+    AudioSource source;
+
     void Start()
     {
         hopDirection.Set(0.0f, hopHeight, 0.0f);

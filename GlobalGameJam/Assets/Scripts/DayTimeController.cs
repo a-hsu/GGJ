@@ -2,7 +2,9 @@
 
 public class DayTimeController:MonoBehaviour
 {
-    float currentTime=0.0f;
+    bool dayTimeActive = true;
+
+    static float currentTime=0.0f;
 
     //The current stop time is 120 second or 2 minutes.
     //Once two minutes passes and the player has not found the desired animal, the game is over/restarts.
@@ -10,7 +12,12 @@ public class DayTimeController:MonoBehaviour
     const float stopTime=120.0f;
 
     [SerializeField]
-    Light dayTimeLight;
+    static Light dayTimeLight;
+
+    private void Awake()
+    {
+        dayTimeLight = GetComponent<Light>();
+    }
 
     //This will update the daytime from light to dark.
     void Update()
@@ -22,21 +29,22 @@ public class DayTimeController:MonoBehaviour
     //The daytime is determined by the intensity of the player's directional light.
     void UpdateDayTime()
     {
-        currentTime+=Time.deltaTime;
-
-        dayTimeLight.intensity=1.0f-currentTime/stopTime;
-
-        //Two minutes has passed and thus it is game over.
-        //We reset values so the player can start over.
-        if(currentTime>=120.0f)
+        if (dayTimeActive && currentTime < 120.0f)
         {
-            ResetDayTime();
+            currentTime += Time.deltaTime;
+
+            dayTimeLight.intensity = 1.0f - currentTime / stopTime;
         }
     }
 
-    void ResetDayTime()
+    public static void ResetDayTime()
     {
         currentTime=0.0f;
         dayTimeLight.intensity=1.0f;
+    }
+
+    public static float getCurrentTime()
+    {
+        return currentTime;
     }
 }

@@ -178,7 +178,6 @@ GameObject:
   - component: {fileID: 5400000}
   - component: {fileID: 13600000}
   - component: {fileID: 11400004}
-  - component: {fileID: 6818889413474395612}
   m_Layer: 0
   m_Name: RigidBodyFPSController
   m_TagString: Untagged
@@ -301,19 +300,6 @@ MonoBehaviour:
     slowDownRate: 20
     airControl: 0
     shellOffset: 0
---- !u!114 &6818889413474395612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f6b0969f1c965e4e99000fefa783847, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dayTimeLight: {fileID: 0}
 --- !u!1 &524534212194179170
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2316389572122577588}
   - component: {fileID: 4367735651270083351}
+  - component: {fileID: 2408237473038028158}
   m_Layer: 0
   m_Name: DayTimeLight
   m_TagString: Untagged
@@ -383,3 +370,16 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &2408237473038028158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524534212194179170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6b0969f1c965e4e99000fefa783847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayTimeLight: {fileID: 4367735651270083351}

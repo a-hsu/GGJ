@@ -90,6 +90,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
 
+        float currentTime = 0.0f;
+        bool hasChosenNPC = false;
+        GameObject chosenNPCGamebject = null;
+
 
         public Vector3 Velocity
         {
@@ -134,6 +138,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
             {
                 m_Jump = true;
+            }
+
+            currentTime = DayTimeController.getCurrentTime();
+
+            if(currentTime >=120.0f && !chosenNPCGamebject)
+            {
+                //Game over!
+                //You didnt return home in time.
             }
         }
 
@@ -189,6 +201,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
             MoveFirstPerson();
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(collision.gameObject.tag=="ChosenNPC")
+            {
+                PickupNPC(collision.gameObject);
+            }
+
+            else if(collision.gameObject.tag=="Home")
+            {
+                ReturnHome();
+            }
+        }
 
         private float SlopeMultiplier()
         {
@@ -302,6 +326,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_RigidBody.AddForce(-m_RigidBody.velocity, ForceMode.VelocityChange);
             }
+        }
+
+        void PickupNPC(GameObject collisionGameObject)
+        {
+            hasChosenNPC = true;
+            chosenNPCGamebject = collisionGameObject;
+            DayTimeController.ResetDayTime();
+        }
+
+        void ReturnHome()
+        {
+
         }
     }
 }
